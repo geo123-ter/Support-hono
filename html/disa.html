@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ability Support | Promoting Unity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font (kept) -->
+   <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+             font-family: "Poppins", sans-serif;
+            background-color: #f9fbfd;
+            color: #1e2b3c;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* ---------- TYPOGRAPHY & LINKS ---------- */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ---------- HEADER (clean, sticky) ---------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            flex-wrap: wrap;
+        }
+
+        .logo h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #0b4f6c, #0a3144);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            font-weight: 500;
+        }
+
+        nav a {
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2.5px;
+            background: #0f7173;
+            transition: 0.25s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        header button {
+            background: #0f7173;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        header button a {
+            color: white;
+            display: block;
+        }
+
+        header button:hover {
+            background: #094c4e;
+            transform: scale(0.98);
+        }
+
+        /* ---------- HERO (minimal, strong) ---------- */
+        .hero {
+            background: linear-gradient(105deg, #e5edf1 0%, #ffffff 70%);
+            padding: 5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #0b2c3d;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #2e4756;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1e5f5f;
+            color: white;
+            padding: 0.9rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            letter-spacing: 0.5px;
+            border: 1px solid transparent;
+        }
+
+        .btn:hover {
+            background: #0b3b3b;
+            box-shadow: 0 8px 16px rgba(15,113,115,0.15);
+        }
+
+        /* ---------- IMPACT (numbers) ---------- */
+        .impact {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .impact h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: #0a3144;
+        }
+
+        .impact-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .impact-box {
+            background: #f4f8fa;
+            padding: 2rem 1.8rem;
+            border-radius: 24px;
+            min-width: 180px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid rgba(15,113,115,0.1);
+        }
+
+        .impact-box h3 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #0f7173;
+            margin-bottom: 0.3rem;
+        }
+
+        .impact-box p {
+            font-size: 1rem;
+            color: #2e3e4e;
+            font-weight: 500;
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about {
+            background: #ebf2f5;
+            padding: 4.5rem 2rem;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            color: #0b4f6c;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            color: #1f3a47;
+            font-weight: 350;
+        }
+
+        /* ---------- TEAM (simple cards) ---------- */
+        .team {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .team h2 {
+            font-size: 2rem;
+            margin-bottom: 2.8rem;
+            color: #0a3144;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+
+        .team-card {
+            background: #fafdfe;
+            padding: 1.8rem 2rem;
+            border-radius: 32px;
+            width: 220px;
+            border: 1px solid #e0ecf0;
+            transition: 0.15s;
+        }
+
+        .team-card:hover {
+            border-color: #0f7173;
+            background: white;
+        }
+
+        .team-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            color: #0c4e5a;
+        }
+
+        .team-card p {
+            color: #3f5e6b;
+            font-weight: 400;
+        }
+
+        /* ---------- DONATION SECTION ---------- */
+        .donation {
+            background: linear-gradient(145deg, #152f38, #0c3842);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .donation h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .donation p {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+            color: #deedf0;
+        }
+
+        .donation-box {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(4px);
+            max-width: 650px;
+            margin: 2.5rem auto 0;
+            padding: 2.5rem 1.8rem;
+            border-radius: 48px 48px 48px 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .donation-box p {
+            font-weight: 400;
+            margin-bottom: 0.9rem;
+        }
+
+        .donation .btn {
+            background: white;
+            color: #0f4a52;
+            margin-top: 1.2rem;
+            font-weight: 700;
+        }
+
+        .donation .btn:hover {
+            background: #f0f9fa;
+            color: #05262c;
+        }
+
+        /* ---------- VOLUNTEER FORM ---------- */
+        .volunteer {
+            padding: 4rem 2rem;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .volunteer h2 {
+            font-size: 2rem;
+            color: #0a3144;
+            margin-bottom: 2rem;
+        }
+
+        .volunteer-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .volunteer-form input {
+            padding: 1rem 1.5rem;
+            border: 1px solid #cfdfe5;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: #f6fafc;
+        }
+
+        .volunteer-form input:focus {
+            outline: none;
+            border-color: #0f7173;
+            background: white;
+        }
+
+        /* ---------- CONTACT FORM ---------- */
+        .contact {
+            background: #eef5f7;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #0a3144;
+        }
+
+        .contact-form {
+            max-width: 650px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem 1.6rem;
+            border: 1px solid #cbd8de;
+            border-radius: 40px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: white;
+            resize: vertical;
+        }
+
+        .contact-form textarea {
+            border-radius: 28px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #0f7173;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(15,113,115,0.08);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: #10262e;
+            color: #ebf2fa;
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+
+        .footer-container > div {
+            flex: 1 1 200px;
+        }
+
+        .footer-container h3,
+        .footer-container h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-container p,
+        .footer-container li {
+            color: #c6d9df;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            list-style: none;
+        }
+
+        .footer-container ul {
+            list-style: none;
+        }
+
+        .footer-container a {
+            color: #d1e3e8;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-container a:hover {
+            color: white;
+            border-bottom: 1px solid #7fc2c2;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #a3c0c7;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 800px) {
+            header {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1.2rem;
+            }
+            nav ul {
+                gap: 1.4rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .impact-container {
+                gap: 1.2rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 0.7rem 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <div class="logo">
+        <h2>Ability Support</h2>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="./volunterr.html">Volunteer</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <button><a href="tel:+250722412117">Call</a></button>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Empowering Abilities, Changing Lives</h1>
+        <p>
+            Supporting people living with disabilities through accessibility,
+            education assistance, and inclusive community programs.
+        </p>
+        <a href="#donation" class="btn">Get Support</a>
+    </div>
+</section>
+
+<!-- ================= IMPACT ================= -->
+<section class="impact" id="impact">
+    <h2>Our Impact</h2>
+    <div class="impact-container">
+        <div class="impact-box">
+            <h3>500+</h3>
+            <p>People Supported</p>
+        </div>
+        <div class="impact-box">
+            <h3>120</h3>
+            <p>Students Assisted</p>
+        </div>
+        <div class="impact-box">
+            <h3>300</h3>
+            <p>Mobility Devices Provided</p>
+        </div>
+        <div class="impact-box">
+            <h3>50</h3>
+            <p>Medical Interventions</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about">
+    <div class="about-text">
+        <h2>How We Help</h2>
+        <p>
+            We connect individuals with medical support, assistive devices,
+            educational programs, and community inclusion initiatives.
+            Every person deserves dignity, independence, and opportunity.
+        </p>
+    </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="team">
+    <h2>Our Team</h2>
+    <div class="team-container">
+        <div class="team-card">
+            <h3>Pacifique A.</h3>
+            <p>Founder & Director</p>
+        </div>
+        <div class="team-card">
+            <h3>Grace N.</h3>
+            <p>Community Coordinator</p>
+        </div>
+        <div class="team-card">
+            <h3>Eric K.</h3>
+            <p>Volunteer Lead</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= DONATION ================= -->
+<section class="donation" id="donation">
+    <h2>Support Someone Today</h2>
+    <p>Your contribution helps provide medical care, mobility tools, and education support.</p>
+    <div class="donation-box">
+        <p><strong>Mobile Money:</strong> +250 722 412117</p>
+        <p><strong>Bank Name:</strong> Ability Support Organization</p>
+        <p><strong>Account Number:</strong> 1234567890</p>
+        <a href="#" class="btn">Donate Now</a>
+    </div>
+</section>
+
+<!-- ================= VOLUNTEER ================= -->
+<section class="volunteer" id="volunteer">
+    <h2>Become a Volunteer</h2>
+    <form class="volunteer-form">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="text" placeholder="Your Skills">
+        <button type="submit" class="btn">Join Us</button>
+    </form>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="footer-container">
+        <div>
+            <h3>Ability Support</h3>
+            <p>
+                Dedicated to empowering people living with disabilities
+                through inclusion and accessibility.
+            </p>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/index.php">Home</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Contact Info</h4>
+            <p>Email: geovanipacis@gmail.com</p>
+            <p>Phone: +250 722 412117</p>
+            <p>Kigali, Rwanda</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ability Support. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

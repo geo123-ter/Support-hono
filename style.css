@@ -272,3 +272,23 @@ header {
 .call:active {
     transform: scale(0.97);
 }
+.link{
+    display:inline-block;
+    padding:10px 22px;
+    background:#0d3b66;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+.link a{
+    background-color: #0056b3;
+}
+
+.link:hover{
+    background:#f4d35e;
+    color:#000;
+    transform:translateY(-3px);
+}
+

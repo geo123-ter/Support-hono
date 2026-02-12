@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>|| OUR Home</title>
+    <title>|| HOME page welcome</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -69,6 +69,7 @@
  <div class="card">
     <h3>Support People with Disabilities</h3>
     <p>Empowering individuals with disabilities through education and care.</p>
+    <a href="./html/disa.html" class="link">Learn more</a>
 </div>
 
                 <div class="card">

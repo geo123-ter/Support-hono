@@ -1,0 +1,303 @@
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Roboto Mono', monospace;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f9fafc;
+    color:#333;
+    line-height:1.6;
+}
+
+section{
+    padding:90px 8%;
+}
+
+h1,h2,h3,h4{
+    margin-bottom:20px;
+}
+
+h2{
+    font-size:32px;
+    text-align:center;
+    color:#0d3b66;
+}
+
+p{
+    font-size:15px;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:#0d3b66;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo h2{
+    font-size:22px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#f4d35e;
+}
+
+header button{
+    padding:8px 18px;
+    background:#f4d35e;
+    border:none;
+    border-radius:6px;
+}
+
+header button a{
+    text-decoration:none;
+    color:#000;
+    font-weight:600;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1581093450021-4a7360e9a6e4");
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:150px 20px;
+}
+
+.hero h1{
+    font-size:45px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:20px auto;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 28px;
+    background:#f4d35e;
+    color:black;
+    text-decoration:none;
+    border-radius:6px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#ee964b;
+    transform:translateY(-3px);
+}
+
+/* ================= IMPACT ================= */
+
+.impact{
+    background:#ffffff;
+}
+
+.impact-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.impact-box{
+    background:#f9fafc;
+    padding:35px;
+    width:220px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.impact-box:hover{
+    transform:translateY(-8px);
+}
+
+.impact-box h3{
+    font-size:30px;
+    color:#0d3b66;
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+    background:#f4f6f9;
+    text-align:center;
+}
+
+.about-text{
+    max-width:750px;
+    margin:auto;
+}
+
+/* ================= TEAM ================= */
+
+.team{
+    background:#ffffff;
+}
+
+.team-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.team-card{
+    background:#f9fafc;
+    padding:30px;
+    width:250px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.team-card:hover{
+    transform:translateY(-8px);
+}
+
+/* ================= DONATION ================= */
+
+.donation{
+    background:#0d3b66;
+    color:white;
+    text-align:center;
+}
+
+.donation-box{
+    margin-top:30px;
+}
+
+.donation .btn{
+    margin-top:20px;
+}
+
+/* ================= FORMS ================= */
+
+.volunteer,
+.contact{
+    background:#ffffff;
+    text-align:center;
+}
+
+.volunteer-form,
+.contact-form{
+    max-width:550px;
+    margin:30px auto 0;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input, textarea{
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    font-size:14px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus, textarea:focus{
+    border-color:#0d3b66;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    background:#0d3b66;
+    color:white;
+    padding:60px 8% 20px;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:40px;
+}
+
+.footer ul{
+    list-style:none;
+}
+
+.footer a{
+    text-decoration:none;
+    color:white;
+    display:block;
+    margin-bottom:8px;
+    transition:0.3s;
+}
+
+.footer a:hover{
+    color:#f4d35e;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:40px;
+    border-top:1px solid rgba(255,255,255,0.3);
+    padding-top:15px;
+    font-size:14px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav ul{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    section{
+        padding:60px 5%;
+    }
+
+}
