@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Support</title>
+    <link rel="stylesheet" href="../css/support.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <form action="../php/support.php" method="POST" class="support-form">
+        <!-- Name field with icon -->
+        <div class="input-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" name="full_name" placeholder="Full Name *" required>
+        </div>
+        
+        <!-- Email field with icon -->
+        <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="email" placeholder="Email *" required>
+        </div>
+        
+        <!-- Phone field with icon -->
+        <div class="input-icon">
+            <i class="fas fa-phone"></i>
+            <input type="tel" name="phone" placeholder="Phone Number">
+        </div>
+        
+        <!-- Support type dropdown with icon -->
+        <div class="input-icon">
+            <i class="fas fa-hand-holding-heart"></i>
+            <select name="need" required>
+                <option value="" disabled selected>Select the type of support *</option>
+                <option>Mobility Aid</option>
+                <option>Tutoring / Mentoring</option>
+                <option>Event Assistance</option>
+                <option>Communication Help</option>
+                <option>Other</option>
+            </select>
+        </div>
+        
+      
+        <div class="input-icon">
+            <i class="fas fa-pencil-alt"></i>
+            <textarea name="details" placeholder="Details / Explanation"></textarea>
+        </div>
+        <button type="submit">
+            <i class="fas fa-paper-plane"></i> Submit Request
+        </button>
+    </form>
+</body>
+</html>

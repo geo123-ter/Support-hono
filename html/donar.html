@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate | Support Our Cause - Promoting Unity</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+        --primary-color:#2ecc71;
+        --secondary-color:#3498db;
+        --dark-color:#2c3e50;
+        --text-color:#34495e;
+        --white:#fff;
+        --transition: all 0.3s ease;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display:flex; justify-content:center; align-items:center;
+        min-height:100vh; padding:20px; position:relative; overflow-x:hidden;
+    }
+
+    /* Main container */
+    .donate-wrapper { width:100%; max-width:550px; z-index:10; animation: slideUp 0.8s ease; }
+    @keyframes slideUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+
+    /* Donation container */
+    .donate-container {
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        padding:40px 35px;
+        border-radius:30px;
+        box-shadow:0 30px 70px rgba(0,0,0,0.3);
+        border:1px solid rgba(255,255,255,0.2);
+        transition: var(--transition);
+    }
+    .donate-container:hover { transform: translateY(-5px); box-shadow:0 40px 80px rgba(0,0,0,0.4); }
+
+    .donate-header { text-align:center; margin-bottom:30px; }
+    .donate-header h1 {
+        margin-bottom:10px; font-size:2.2rem; font-weight:700;
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .donate-header p { color:#666; font-size:1rem; line-height:1.6; }
+
+    /* Form Styles */
+    .form-group { margin-bottom:20px; position:relative; }
+    .form-group label { display:block; margin-bottom:8px; font-weight:500; color:var(--text-color); }
+    .input-group { position:relative; display:flex; align-items:center; }
+    .input-icon { position:absolute; left:15px; color:#999; z-index:1; transition:var(--transition); }
+    .form-control {
+        width:100%; padding:14px 15px 14px 45px; border-radius:12px; border:2px solid #e0e0e0;
+        font-size:1rem; transition:var(--transition); background:rgba(255,255,255,0.9);
+    }
+    .form-control:focus { outline:none; border-color:var(--primary-color); box-shadow:0 0 0 4px rgba(46,204,113,0.1); }
+    .form-control:focus + .input-icon { color:var(--primary-color); }
+
+    /* Quick Amount Selector */
+    .quick-amount { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:25px; }
+    .amount-preset { background:#f0f2f5; border:2px solid transparent; padding:12px; border-radius:12px; font-weight:600; color:var(--dark-color); cursor:pointer; text-align:center; transition:var(--transition); }
+    .amount-preset:hover { background:var(--primary-color); color:#fff; transform:translateY(-2px); }
+    .amount-preset.active { background:linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color:#fff; border-color:var(--white); }
+
+   
+    .donate-btn {
+        width:100%; padding:16px; background:linear-gradient(135deg, #2ecc71, #27ae60);
+        border:none; border-radius:12px; color:#fff; font-weight:700; font-size:1.2rem;
+        cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; gap:10px; position:relative; overflow:hidden;
+    }
+    .donate-btn:hover { transform:translateY(-3px); box-shadow:0 15px 30px rgba(46,204,113,0.4); }
+    .security-badge { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:20px; color:#666; font-size:0.9rem; }
+    .security-badge i { color:var(--primary-color); }
+
+    
+    .custom-select-wrapper { position: relative; }
+    .custom-select-wrapper select { appearance:none; width:100%; padding:12px 15px; border-radius:12px; border:2px solid #e0e0e0; background:rgba(255,255,255,0.9); font-size:1rem; }
+    .custom-select-wrapper::after {
+        content:'\f078'; font-family:'Font Awesome 5 Free'; font-weight:900;
+        position:absolute; right:15px; top:50%; transform:translateY(-50%); pointer-events:none;
+    }
+
+    /* Tooltip */
+    .tooltip { position: relative; display:inline-block; }
+    .tooltip .tooltiptext { visibility:hidden; width:140px; background-color:var(--dark-color); color:#fff; text-align:center; border-radius:6px; padding:5px; position:absolute; z-index:1; bottom:125%; left:50%; margin-left:-70px; opacity:0; transition:opacity 0.3s; }
+    .tooltip:hover .tooltiptext { visibility:visible; opacity:1; }
+
+</style>
+</head>
+<body>
+<div class="donate-wrapper">
+    <div class="donate-container">
+        <div class="donate-header">
+            <h1>Make a Donation</h1>
+            <p>Your generosity brings hope and creates lasting change.</p>
+        </div>
+
+        <div class="quick-amount">
+            <div class="amount-preset" data-amount="10">$10</div>
+            <div class="amount-preset" data-amount="25">$25</div>
+            <div class="amount-preset" data-amount="50">$50</div>
+            <div class="amount-preset" data-amount="100">$100</div>
+            <div class="amount-preset" data-amount="250">$250</div>
+            <div class="amount-preset" data-amount="500">$500</div>
+        </div>
+
+        <form id="donationForm" method="POST" action="../php/donar.php">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <div class="input-group">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone-alt"></i> Mobile Money Number</label>
+                <div class="input-group">
+                    <i class="fas fa-mobile-alt input-icon"></i>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="+250 700 000 000" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount"><i class="fas fa-dollar-sign"></i> Donation Amount</label>
+                <div class="input-group">
+                    <input type="number" id="amount" name="amount" class="form-control" placeholder="0.00" required>
+                </div>
+            </div>
+
+            <div class="form-group custom-select-wrapper">
+                <label for="donationType"><i class="fas fa-clock"></i> Donation Type</label>
+                <select id="donationType" name="donation_type" class="form-control" required>
+                    <option value="one-time" data-icon="fas fa-gift">One-Time Donation</option>
+                    <option value="recurring" data-icon="fas fa-sync-alt">Recurring Donation</option>
+                </select>
+            </div>
+
+            <div class="form-group custom-select-wrapper" id="recurringOptions">
+                <label for="recurring_interval"><i class="fas fa-calendar-alt"></i> Recurring Interval</label>
+                <select name="recurring_interval" class="form-control">
+                    <option value="weekly" data-icon="fas fa-calendar-week">Weekly</option>
+                    <option value="monthly" data-icon="fas fa-calendar-alt" selected>Monthly</option>
+                    <option value="quarterly" data-icon="fas fa-calendar-check">Quarterly</option>
+                </select>
+            </div>
+
+            <button type="submit" class="donate-btn"><span>Complete Donation</span> <i class="fas fa-heart"></i></button>
+            <div class="security-badge"><i class="fas fa-lock"></i> <span>Secure encrypted donation. Your info is safe with us.</span> <i class="fas fa-check-circle"></i></div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Quick amount selection
+    const presets = document.querySelectorAll('.amount-preset');
+    const amountInput = document.getElementById('amount');
+    presets.forEach(p => p.addEventListener('click', () => {
+        presets.forEach(p2 => p2.classList.remove('active'));
+        p.classList.add('active');
+        amountInput.value = p.dataset.amount;
+    }));
+
+    // Recurring options toggle
+    const donationType = document.getElementById('donationType');
+    const recurringOptions = document.getElementById('recurringOptions');
+    donationType.addEventListener('change', () => {
+        recurringOptions.style.display = donationType.value==='recurring'?'block':'none';
+    });
+    recurringOptions.style.display='none';
+</script>
+</body>
+</html>
