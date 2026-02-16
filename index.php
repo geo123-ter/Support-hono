@@ -33,7 +33,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Services</a></li>
                     <li><a href="#donate">Donate</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="./html/contact.html">Contact</a></li>
                 </ul>
             </nav>
         <a href="tel:+250735287464" class="call">
