@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Ability Support | Volunteer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/volunteer.css">
-
+    <link rel="stylesheet" href="../css/volunteer.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
+
 <body>
 <header>
     <div class="logo">
         <h2>Ability Support</h2>
     </div>
-
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -21,7 +21,6 @@
             <li><a href="./contact.html">Contact</a></li>
         </ul>
     </nav>
-
     <button><a href="tel:+250735287464">Call</a></button>
 </header>
 
@@ -31,78 +30,19 @@
         <p>Your time and skills can change a life. Become part of a community that empowers people with disabilities through inclusion and accessibility.</p>
     </section>
 
-    <!-- ========== WHY VOLUNTEER ========== -->
-    <section class="why-volunteer">
-        <h2>Why volunteer with us?</h2>
-        <p class="section-subhead">More than service — connection, growth, and impact.</p>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">🤝</div>
-                <h3>Real impact</h3>
-                <p>Directly support individuals and families in your community.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🧠</div>
-                <h3>Learn & grow</h3>
-                <p>Gain experience in accessibility, assistive tech, and inclusive education.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🌍</div>
-                <h3>Join a community</h3>
-                <p>Become part of a diverse, passionate team working toward unity.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">⏱️</div>
-                <h3>Flexible time</h3>
-                <p>Weekend, evening, or one‑time opportunities — you choose.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== OPEN VOLUNTEER ROLES ========== -->
-    <section class="roles">
-        <h2>Open volunteer roles</h2>
-        <div class="roles-container">
-            <div class="role-card">
-                <h3>Mobility aide</h3>
-                <span class="commitment">📅 Weekends</span>
-                <p>Help distribute and adjust mobility devices, accompany individuals to appointments.</p>
-                <a href="#volunteer-form" class="btn btn-outline" style="padding: 0.6rem 1.8rem;">Apply</a>
-            </div>
-            <div class="role-card">
-                <h3>Tutor / mentor</h3>
-                <span class="commitment">📅 2–4 hrs/week</span>
-                <p>Provide academic support and encouragement to students with disabilities.</p>
-                <a href="#volunteer-form" class="btn btn-outline" style="padding: 0.6rem 1.8rem;">Apply</a>
-            </div>
-            <div class="role-card">
-                <h3>Event support</h3>
-                <span class="commitment">📅 One‑time / monthly</span>
-                <p>Help with inclusive community events, workshops, and awareness campaigns.</p>
-                <a href="#volunteer-form" class="btn btn-outline" style="padding: 0.6rem 1.8rem;">Apply</a>
-            </div>
-            <div class="role-card">
-                <h3>Communications</h3>
-                <span class="commitment">📅 Remote</span>
-                <p>Write stories, manage social media, or create content for our channels.</p>
-                <a href="#volunteer-form" class="btn btn-outline" style="padding: 0.6rem 1.8rem;">Apply</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== VOLUNTEER APPLICATION FORM ========== -->
-    <section class="volunteer-form-section" id="volunteer-form">
+   
+    <section class="volunteer-form-section" id="volunteer-form-section">
         <h2>Ready to get involved?</h2>
-        <p class="section-subhead">Fill out the form below — we’ll be in touch within 2 days.</p>
+        <p class="section-subhead">Fill out the form below — we’ll be in touch within 1 days.</p>
         <div class="form-container">
-            <form class="volunteer-form">
+            <form id="volunteer-form" class="volunteer-form">
                 <div class="form-row">
-                    <input type="text" placeholder="Full name *" required>
-                    <input type="email" placeholder="Email address *" required>
+                    <input type="text" placeholder="Full name *" required name="full_name">
+                    <input type="email" placeholder="Email address *" required name="email">
                 </div>
                 <div class="form-row">
-                    <input type="tel" placeholder="Phone number">
-                    <select required>
+                    <input type="tel" placeholder="Phone number" name="phone">
+                    <select required name="role">
                         <option value="" disabled selected>Preferred role *</option>
                         <option>Mobility aide</option>
                         <option>Tutor / mentor</option>
@@ -112,23 +52,22 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <select>
+                    <select name="availability">
                         <option value="" disabled selected>Availability</option>
                         <option>Weekdays (daytime)</option>
                         <option>Weekdays (evening)</option>
                         <option>Weekends</option>
                         <option>Flexible / remote</option>
                     </select>
-                    <input type="text" placeholder="Skills or languages (e.g. sign language, teaching)">
+                    <input type="text" placeholder="Skills or languages (e.g. sign language, teaching)" name="skills">
                 </div>
-                <textarea placeholder="Why do you want to volunteer with Ability Support?" rows="4"></textarea>
-                
+                <textarea placeholder="Why do you want to volunteer?" rows="4" name="reason"></textarea>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="background-check" required>
+                    <input type="checkbox" id="background-check" name="background_check" required>
                     <label for="background-check">I understand that a background check may be required for certain roles.</label>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="volunteer-terms" required>
+                    <input type="checkbox" id="volunteer-terms" name="volunteer_terms" required>
                     <label for="volunteer-terms">I agree to the volunteer policies and code of conduct.</label>
                 </div>
 
@@ -137,63 +76,13 @@
             </form>
         </div>
     </section>
-
-    <!-- ========== VOLUNTEER TESTIMONIALS ========== -->
-    <section class="testimonials">
-        <h2>From our volunteers</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <p>"I started as a tutor and ended up finding my purpose. The team is supportive, and the families are so grateful."</p>
-                <div class="testimonial-author">— Sarah M.</div>
-                <div class="testimonial-role">Volunteer since 2024</div>
-            </div>
-            <div class="testimonial-card">
-                <p>"Helping with mobility device fittings showed me how small actions create huge independence. I come back every month."</p>
-                <div class="testimonial-author">— Jean-Paul D.</div>
-                <div class="testimonial-role">Mobility aide</div>
-            </div>
-            <div class="testimonial-card">
-                <p>"The flexibility is real. I work full‑time but still volunteer on weekends. It’s the highlight of my week."</p>
-                <div class="testimonial-author">— Grace I.</div>
-                <div class="testimonial-role">Event volunteer</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== FREQUENTLY ASKED QUESTIONS ========== -->
-    <section class="faq">
-        <h2>Volunteer FAQ</h2>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">Do I need experience to volunteer?</div>
-                <div class="faq-answer">Not at all. We provide orientation and training for every role. Your willingness to help is what matters most.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Is there a minimum time commitment?</div>
-                <div class="faq-answer">We offer both ongoing and one‑time opportunities. Just let us know your availability — we’ll find a fit.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Can I volunteer remotely?</div>
-                <div class="faq-answer">Yes! We have remote roles in communications, design, research, and administrative support.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">What ages can volunteer?</div>
-                <div class="faq-answer">Volunteers under 18 are welcome with parental consent. Some roles have age requirements for safety.</div>
-            </div>
-        </div>
-    </section>
-
 </main>
 
-<!-- ================= FOOTER ================= -->
 <footer class="footer">
     <div class="footer-container">
         <div>
             <h3>Ability Support</h3>
-            <p>
-                Dedicated to empowering people living with disabilities
-                through inclusion and accessibility.
-            </p>
+            <p>Dedicated to empowering people living with disabilities through inclusion and accessibility.</p>
         </div>
         <div>
             <h4>Quick Links</h4>
@@ -215,6 +104,45 @@
         <p>&copy; 2026 Ability Support. All rights reserved.</p>
     </div>
 </footer>
+<script>
+emailjs.init("p7IxshaaOVia6SpSs");
+
+document.getElementById("volunteer-form")
+.addEventListener("submit", function(e){
+    e.preventDefault();
+    const form = this;
+    const formData = new FormData(form);
+    fetch("../admin/volunteer.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        if(data.trim() === "success"){
+          
+            const params = {
+                full_name: form.full_name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                role: form.role.value,
+                availability: form.availability.value,
+                skills: form.skills.value,
+                reason: form.reason.value
+            };
+            emailjs.send("service_e89eocq", "template_i1qn08c", params);
+
+            alert("Application submitted successfully! ");
+            form.reset();
+        } else {
+            alert("Database error. Try again.");
+        }
+    })
+    .catch(error => {
+        console.log(error);
+        alert("Server error.");
+    });
+});
+</script>
 
 </body>
 </html>

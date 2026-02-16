@@ -1,0 +1,395 @@
+/* support-form.css - Beautiful styling for support application form */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated background elements */
+body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Form container */
+.support-form {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.6s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form title - add this if you want a title */
+.support-form::before {
+    content: 'Apply for Support';
+    display: block;
+    font-size: 28px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.support-form::after {
+    content: '';
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Input fields styling */
+.support-form input,
+.support-form select,
+.support-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: white;
+    color: #2d3748;
+    outline: none;
+}
+
+/* Placeholder styling */
+.support-form input::placeholder,
+.support-form textarea::placeholder {
+    color: #a0aec0;
+    transition: all 0.3s ease;
+}
+
+/* Input focus effects */
+.support-form input:focus,
+.support-form select:focus,
+.support-form textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.support-form input:focus::placeholder,
+.support-form textarea:focus::placeholder {
+    transform: translateX(10px);
+    opacity: 0;
+}
+
+/* Select field styling */
+.support-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.support-form select:hover {
+    background-color: #f7fafc;
+}
+
+/* Textarea specific styling */
+.support-form textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* Button styling */
+.support-form button {
+    width: 100%;
+    padding: 16px 20px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.support-form button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.support-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+    background: linear-gradient(90deg, #764ba2, #667eea);
+}
+
+.support-form button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.support-form button:active {
+    transform: translateY(0);
+}
+
+/* Required field indicator */
+.support-form input:required,
+.support-form select:required {
+    background-image: radial-gradient(circle, #ff6b6b 2px, transparent 2px);
+    background-position: 98% 15px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+}
+
+/* Success animation for valid fields */
+.support-form input:valid:not(:placeholder-shown),
+.support-form select:valid,
+.support-form textarea:valid:not(:placeholder-shown) {
+    border-color: #48bb78;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2348bb78' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+}
+
+/* Error styling for invalid fields (if you add validation) */
+.support-form input:invalid:not(:placeholder-shown),
+.support-form select:invalid:not(:focus) {
+    border-color: #fc8181;
+}
+
+/* Floating labels effect (if you want to add labels) */
+.field-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+    .support-form {
+        padding: 30px 20px;
+    }
+    
+    .support-form::before {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    
+    .support-form::after {
+        top: 70px;
+    }
+    
+    .support-form input,
+    .support-form select,
+    .support-form textarea {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+    
+    .support-form button {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .support-form {
+        padding: 20px 15px;
+    }
+    
+    .support-form::before {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .support-form::after {
+        top: 60px;
+        width: 40px;
+    }
+}
+
+/* Optional: Add floating labels if you want to add <label> tags */
+.support-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Optional: Add icons to inputs */
+.input-icon {
+    position: relative;
+}
+
+.input-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    transition: all 0.3s ease;
+}
+
+.input-icon input,
+.input-icon select,
+.input-icon textarea {
+    padding-left: 45px;
+}
+
+.input-icon input:focus + i,
+.input-icon select:focus + i,
+.input-icon textarea:focus + i {
+    color: #667eea;
+}
+
+/* Loading state for button */
+.support-form button.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.support-form button.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Success message styling */
+.success-message {
+    background: linear-gradient(90deg, #48bb78, #38a169);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Error message styling */
+.error-message {
+    background: linear-gradient(90deg, #f56565, #e53e3e);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Custom scrollbar for textarea */
+.support-form textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.support-form textarea::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.support-form textarea::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 4px;
+}
+
+.support-form textarea::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2, #667eea);
+}

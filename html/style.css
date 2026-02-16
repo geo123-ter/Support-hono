@@ -1,5 +1,3 @@
-/* ================= GLOBAL ================= */
-
 *{
     margin:0;
     padding:0;
@@ -34,9 +32,6 @@ h2{
 p{
     font-size:15px;
 }
-
-/* ================= HEADER ================= */
-
 header{
     display:flex;
     justify-content:space-between;
@@ -82,9 +77,6 @@ header button a{
     color:#000;
     font-weight:600;
 }
-
-/* ================= HERO ================= */
-
 .hero{
     background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
     url("https://images.unsplash.com/photo-1581093450021-4a7360e9a6e4");
@@ -119,9 +111,6 @@ header button a{
     background:#ee964b;
     transform:translateY(-3px);
 }
-
-/* ================= IMPACT ================= */
-
 .impact{
     background:#ffffff;
 }
@@ -152,9 +141,6 @@ header button a{
     font-size:30px;
     color:#0d3b66;
 }
-
-/* ================= ABOUT ================= */
-
 .about{
     background:#f4f6f9;
     text-align:center;
@@ -164,9 +150,6 @@ header button a{
     max-width:750px;
     margin:auto;
 }
-
-/* ================= TEAM ================= */
-
 .team{
     background:#ffffff;
 }
@@ -192,9 +175,6 @@ header button a{
 .team-card:hover{
     transform:translateY(-8px);
 }
-
-/* ================= DONATION ================= */
-
 .donation{
     background:#0d3b66;
     color:white;
@@ -208,9 +188,6 @@ header button a{
 .donation .btn{
     margin-top:20px;
 }
-
-/* ================= FORMS ================= */
-
 .volunteer,
 .contact{
     background:#ffffff;
@@ -238,9 +215,6 @@ input, textarea{
 input:focus, textarea:focus{
     border-color:#0d3b66;
 }
-
-/* ================= FOOTER ================= */
-
 .footer{
     background:#0d3b66;
     color:white;
@@ -277,8 +251,6 @@ input:focus, textarea:focus{
     padding-top:15px;
     font-size:14px;
 }
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:768px){
 
