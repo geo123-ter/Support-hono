@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery · Promoting Unity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f5f7fa; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        /* Header (same as main site) */
+        header { background: #0b3b3f; color: white; padding: 0.8rem 0; position: sticky; top: 0; z-index: 100; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo h1 { color: #ffd966; font-size: 1.8rem; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { color: #ffd966; border-bottom: 2px solid #ffd966; }
+        .call { background: #e67e22; color: white; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        /* Gallery */
+        .gallery-hero { background: linear-gradient(105deg, #0b3b3f, #1d6d6d); color: white; padding: 3rem 0; text-align: center; }
+        .gallery-hero h2 { font-size: 3rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; padding: 3rem 0; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); cursor: pointer; transition: 0.3s; aspect-ratio: 4/3; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item .caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(11,59,63,0.8); color: white; padding: 0.8rem; text-align: center; transform: translateY(100%); transition: 0.3s; }
+        .gallery-item:hover .caption { transform: translateY(0); }
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
+        .lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+        .lightbox:target { display: flex; }
+        .close { position: absolute; top: 20px; right: 40px; color: white; font-size: 3rem; text-decoration: none; }
+        /* Footer */
+        .footer { background: #0b3b3f; color: #f0f0f0; padding: 2.5rem 0 0; margin-top: 3rem; }
+        .footer-container { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; width: 90%; max-width: 1200px; margin: 0 auto; }
+        .footer-box h3 { color: #ffd966; }
+        .footer-box a { color: #eee; text-decoration: none; }
+        .footer-box a:hover { color: #ffd966; }
+        .footer-bottom { background: #052b2e; text-align: center; padding: 1rem; margin-top: 2rem; }
+        @media (max-width:800px){ .header-container{flex-direction:column;} .nav-links{gap:1rem;} }
+    </style>
+</head>
+<body>
+    <header> <!-- same as before, shortened for brevity -->
+        <div class="container header-container">
+            <div class="logo"><h1>Promoting Unity</h1></div>
+            <nav><ul class="nav-links">
+               <li><a href="/Support-hono/index.php">Home</a></li>
+                     <li><a href="./unity.html">Unity</a></li>
+                     <li><a href="./photo.html">Photo</a></li>
+                     <li><a href="./calendar.html">Calendal</a></li>
+                     
+
+            </ul></nav>
+            <a href="tel:+250722360862" class="call"><i class="fa-solid fa-phone"></i> Call Us</a>
+        </div>
+    </header>
+
+    <section class="gallery-hero">
+        <h2><i class="fa-solid fa-images"></i> Our Impact in Pictures</h2>
+        <p>Moments of hope, care, and community</p>
+    </section>
+
+    <div class="container gallery-grid">
+        <!-- Replace src with your actual images -->
+        <div class="gallery-item"><a href="#img1"><img src="https://picsum.photos/400/300?random=1" alt=""></a><div class="caption">School supply distribution</div></div>
+        <div class="gallery-item"><a href="#img2"><img src="https://picsum.photos/400/300?random=2" alt=""></a><div class="caption">Medical camp</div></div>
+        <div class="gallery-item"><a href="#img3"><img src="https://picsum.photos/400/300?random=3" alt=""></a><div class="caption">Orphan children playing</div></div>
+        <div class="gallery-item"><a href="#img4"><img src="https://picsum.photos/400/300?random=4" alt=""></a><div class="caption">Volunteer training</div></div>
+        <div class="gallery-item"><a href="#img5"><img src="https://picsum.photos/400/300?random=5" alt=""></a><div class="caption">Community garden</div></div>
+        <div class="gallery-item"><a href="#img6"><img src="https://picsum.photos/400/300?random=6" alt=""></a><div class="caption">Elderly support</div></div>
+    </div>
+
+    <!-- Lightbox overlays -->
+    <div id="img1" class="lightbox"><a href="#" class="close">&times;</a><img src="https://picsum.photos/400/300?random=1"></div>
+    <div id="img2" class="lightbox"><a href="#" class="close">&times;</a><img src="https://picsum.photos/400/300?random=2"></div>
+    <div id="img3" class="lightbox"><a href="#" class="close">&times;</a><img src="https://picsum.photos/400/300?random=3"></div>
+    <div id="img4" class="lightbox"><a href="#" class="close">&times;</a><img src="https://picsum.photos/400/300?random=4"></div>
+    <div id="img5" class="lightbox"><a href="#" class="close">&times;</a><img src="https://picsum.photos/400/300?random=5"></div>
+    <div id="img6" class="lightbox"><a href="#" class="close">&times;</a><img src="https://picsum.photos/400/300?random=6"></div>
+
+    <footer class="footer"> <!-- same as before -->
+        <div class="footer-container">
+            <div class="footer-box"><h3>Promoting Unity</h3><p>We improve lives through education, health, and community programs.</p></div>
+            <div class="footer-box"><h3>Quick Links</h3><ul><li><a href="/index.php">Home</a></li><li><a href="/about.php">About</a></li><li><a href="/donate.php">Donate</a></li></ul></div>
+            <div class="footer-box"><h3>Contact</h3><p>Kigali, Rwanda</p><p><a href="tel:+250722360862">0722 360 862</a></p><p><a href="mailto:reponserashford@gmail.com">reponserashford@gmail.com</a></p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Promoting Unity NGO. All rights reserved.</p></div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orphan Children · Promoting Unity</title>
+    <!-- same font awesome as main (v7) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fefefe;
+            color: #1f2a36;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- header (match main site style) --- */
+        header {
+            background: #0b3b3f;
+            color: white;
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #ffd966;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: #ffd966;
+            border-bottom: 2px solid #ffd966;
+            padding-bottom: 4px;
+        }
+
+        .call {
+            background: #e67e22;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .call i {
+            font-size: 1.1rem;
+        }
+
+        .call:hover {
+            background: #cf711c;
+            transform: scale(1.02);
+        }
+
+        /* --- orphan child page hero (smaller) --- */
+        .page-hero {
+            background: linear-gradient(94deg, #1d5e63, #22777d);
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        .page-hero h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 0 #083b40;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+        }
+
+        /* breadcrumb / back */
+        .breadcrumb {
+            background: #f0f6f7;
+            padding: 0.8rem 0;
+        }
+
+        .breadcrumb .container a {
+            color: #0b3b3f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb .container a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- main orphan content --- */
+        .orphan-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            color: #0b3b3f;
+            margin-bottom: 2rem;
+            border-left: 8px solid #e67e22;
+            padding-left: 1.2rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .two-column img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -10px rgba(0,60,60,0.4);
+            transition: 0.4s;
+            border: 5px solid #ffe1b3;
+        }
+
+        .two-column img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 25px 30px -8px #1e5555;
+        }
+
+        .info-card {
+            background: #f9fcfc;
+            padding: 2rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(0, 50, 50, 0.08);
+        }
+
+        .info-card h3 {
+            font-size: 1.9rem;
+            color: #1d5e63;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+        }
+
+        .highlight-list {
+            list-style: none;
+        }
+
+        .highlight-list li {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.15rem;
+            background: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            box-shadow: 0 2px 8px #d0eaea;
+        }
+
+        .highlight-list i {
+            color: #e67e22;
+            font-size: 1.6rem;
+            width: 2rem;
+            text-align: center;
+        }
+
+        /* program pillars */
+        .pillars {
+            background: #e2f0f0;
+            border-radius: 40px;
+            padding: 3rem 0;
+            margin: 2rem 0;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pillar-item {
+            background: white;
+            padding: 2rem 1.8rem;
+            border-radius: 30px;
+            text-align: center;
+            transition: 0.2s;
+            box-shadow: 0 10px 12px rgba(0,80,80,0.1);
+        }
+
+        .pillar-item i {
+            font-size: 3rem;
+            color: #0b3b3f;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-item h4 {
+            font-size: 1.8rem;
+            color: #1d5e63;
+            margin-bottom: 0.8rem;
+        }
+
+        .pillar-item p {
+            color: #2b4b4f;
+        }
+
+        /* call to action (donate) */
+        .cta-orphan {
+            background: #0b3b3f;
+            color: white;
+            text-align: center;
+            padding: 3.5rem 1rem;
+            border-radius: 70px 70px 20px 20px;
+            margin: 3rem 0;
+        }
+
+        .cta-orphan h3 {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-orphan .btn-big {
+            background: #ffb347;
+            color: #0b3b3f;
+            padding: 1rem 3rem;
+            font-size: 1.6rem;
+            border-radius: 60px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1.5rem 0 0.5rem;
+            font-weight: 700;
+            transition: 0.2s;
+            border: 3px solid white;
+        }
+
+        .cta-orphan .btn-big:hover {
+            background: #ffa01e;
+            transform: translateY(-3px);
+        }
+
+        /* footer (same style as original) */
+        .footer {
+            background: #0b3b3f;
+            color: #f0f0f0;
+            padding: 2.5rem 0 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-box h3 {
+            color: #ffd966;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-box ul {
+            list-style: none;
+        }
+
+        .footer-box ul li {
+            margin: 0.4rem 0;
+        }
+
+        .footer-box a {
+            color: #eee;
+            text-decoration: none;
+        }
+
+        .footer-box a:hover {
+            color: #ffd966;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            background: #052b2e;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .two-column, .pillar-grid, .footer-container {
+                grid-template-columns: 1fr;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .page-hero h2 {
+                font-size: 2rem;
+            }
+        }
+    
+
+
+
+
+    .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #25D366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        line-height: 60px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        z-index: 1000;
+        transition: 0.3s;
+        animation: pulse 2s infinite;
+    }
+    .whatsapp-float:hover {
+        background: #128C7E;
+        transform: scale(1.1);
+    }
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+        70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+        100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+    /* Tooltip */
+    .whatsapp-float .tooltip {
+        visibility: hidden;
+        width: 120px;
+        background: #0b3b3f;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        right: 70px;
+        bottom: 15px;
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .whatsapp-float:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    </style>
+</head>
+<body>
+    <!-- Header (exact copy from your main page) -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Promoting Unity</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/Support-hono/index.php">Home</a></li>
+                     <li><a href="./unity.html">Unity</a></li>
+                     <li><a href="./photo.html">Photo</a></li>
+                     <li><a href="./calendar.html">Calendal</a></li>
+                     
+
+                </ul>
+            </nav>
+            <a href="tel:+250735287464" class="call">
+                <i class="fa-solid fa-phone"></i> Call Us
+            </a>
+        </div>
+    </header>
+
+    <!-- small breadcrumb (back to services) -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/Support-hono/index.php"><i class="fa-solid fa-arrow-left"></i> Back to Services</a>  |  <span style="color:#1d5e63;">Orphan children support</span>
+        </div>
+    </div>
+
+    <!-- orphan page hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h2> Orphan Children</h2>
+            <p>care · education · family · future</p>
+        </div>
+    </section>
+
+    <!-- main content: orphan children detailed page -->
+    <section class="orphan-section">
+        <div class="container">
+            <div class="two-column">
+                
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 100 80'%3E%3Crect width='100' height='80' fill='%23287e8c'/%3E%3Ccircle cx='35' cy='30' r='12' fill='%23f5e6d3'/%3E%3Ccircle cx='65' cy='30' r='12' fill='%23f5e6d3'/%3E%3Ccircle cx='35' cy='27' r='3' fill='%23333333'/%3E%3Ccircle cx='65' cy='27' r='3' fill='%23333333'/%3E%3Cpath d='M30 50 Q50 65,70 50' stroke='%23ffd966' stroke-width='6' fill='none' stroke-linecap='round' /%3E%3Crect x='28' y='40' width='10' height='18' fill='%23e67e22' rx='3'/%3E%3Crect x='62' y='40' width='10' height='18' fill='%23e67e22' rx='3'/%3E%3Ctext x='22' y='75' fill='%23ffffff' font-size='9' font-family='monospace'%3Ehope %26 care%3C/text%3E%3C/svg%3E"
+                     alt="happy orphan children illustration with caregivers">
+                <div class="info-card">
+                    <h3>Every child deserves a family</h3>
+                    <p>Our orphan support program goes beyond shelter.
+                         We create loving, stable environments where children can heal, learn, and thrive. Through holistic care, education, and psychosocial support, we build foundations for independent futures.</p>
+                    <ul class="highlight-list">
+                        <li><i class="fa-solid fa-house-chimney"></i> Family-style homes & foster care</li>
+                        <li><i class="fa-solid fa-graduation-cap"></i> School fees, uniforms & tutoring</li>
+                        <li><i class="fa-solid fa-hand-holding-heart"></i> Counselling & mentorship</li>
+                        <li><i class="fa-solid fa-kitchen-set"></i> Nutrition & health programs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- three pillar section (like your card style but expanded) -->
+    <section class="pillars">
+        <div class="container">
+            <h2 class="section-title">How we support orphans</h2>
+            <div class="pillar-grid">
+                <div class="pillar-item">
+                    <i class="fa-solid fa-heart"></i>
+                    <h4>Love & care</h4>
+                    <p>Trained “house parents” live with children,
+                         offering emotional support and a sense of belonging.</p>
+                </div>
+                <div class="pillar-item">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h4>Quality education</h4>
+                    <p>We partner with local schools and provide after‑class
+                         learning centres, libraries, and digital skills.</p>
+                </div>
+                <div class="pillar-item">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h4>Skills & independence</h4>
+                    <p>Vocational training and internship opportunities for teenagers
+                         to prepare for self‑sufficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- extended story / impact numbers -->
+    <section class="orphan-section">
+        <div class="container">
+            <div class="two-column" style="grid-template-columns: 1.2fr 0.8fr;">
+                <div>
+                    <h2 class="section-title" style="border-left-color: #e67e22;">Stories of resilience</h2>
+                    <p style="font-size: 1.2rem;"><strong>Marie, 14</strong> — “After losing my parents, I thought I had to drop out of school. The program gave me a new home and paid my school fees. Now I want to be a nurse.”</p>
+                    <p style="margin-top: 2rem;"><i class="fa-solid fa-quote-right" style="color: #0b3b3f; font-size: 2rem;"></i> In 2025, we supported 230 orphaned children across 3 centres. 98% attended school regularly and 87% improved emotional wellbeing scores.</p>
+                    <p style="margin-top: 2rem;"><a href="#donate" style="background: #e67e22; color: white; padding: 12px 32px; border-radius: 36px; text-decoration: none; font-weight: bold;">Sponsor a child →</a></p>
+                </div>
+                <div style="background: #ffe6cc; border-radius: 40px; padding: 2rem; text-align: center;">
+                    <i class="fa-solid fa-children" style="font-size: 5rem; color:#0b3b3f;"></i>
+                    <h3 style="margin: 1rem 0;">join the family</h3>
+                    <p>Monthly sponsorship provides food, education, and medical care for one child.</p>
+                    <p><strong>35€ / month</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- donate section matching your style but bigger -->
+    <section id="donate" class="cta-orphan">
+        <div class="container">
+            <h3>You can change an orphan's story</h3>
+            <p>Your donation – big or small – gives a child safety, hope and a future.</p>
+            <a href="./das/donate.php" class="btn-big"><i class="fa-solid fa-hand-holding-heart"></i> Donate now</a>
+            <p style="margin-top: 1.2rem; font-size: 1rem;"><i class="fa-regular fa-circle-check"></i> 100% goes to children's programs</p>
+        </div>
+    </section>
+
+    <!-- Footer (exactly as yours) -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-box">
+                <h3>Promoting Unity</h3>
+                <p>We are committed to improving lives through education, health, and community development programs.</p>
+            </div>
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/Support-hono/index.php">Home</a></li>
+                    <li><a href="/Support-hono/index.php">About Us</a></li>
+                    <li><a href="/Support-hono/index.php">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>Contact Us</h3>
+                <p>Kigali, Rwanda</p>
+                <p><a href="tel:+250735287464">call: +250 722360862</a></p>
+                <p><a href="mailto:reponserashford@gmail.com">email us: reponserashford@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Helping Hands NGO. All rights reserved.</p>
+        </div>
+    </footer>
+    <a href="https://wa.me/250722360862?text=Hello%2C%20I'm%20interested%20in%20volunteering%20with%20Promoting%20Unity" 
+   class="whatsapp-float" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="tooltip">Chat with us</span>
+</a>
+
+</body>
+</html>
