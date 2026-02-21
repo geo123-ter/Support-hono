@@ -6,11 +6,8 @@ if(!isset($_SESSION['admin'])){
     header("Location: adminlogin.php");
     exit();
 }
-
-// Get statistics for dashboard
 $total_volunteers = $conn->query("SELECT COUNT(*) as count FROM volunteers")->fetch_assoc()['count'];
 $total_support = $conn->query("SELECT COUNT(*) as count FROM support_requests")->fetch_assoc()['count'];
-// $total_blog_posts = $conn->query("SELECT COUNT(*) as count FROM blog_posts")->fetch_assoc()['count'];
 $recent_volunteers = $conn->query("SELECT * FROM volunteers ORDER BY joined_at DESC LIMIT 5");
 $recent_support = $conn->query("SELECT * FROM support_requests ORDER BY submitted_at DESC LIMIT 5");
 ?>
@@ -606,7 +603,7 @@ $recent_support = $conn->query("SELECT * FROM support_requests ORDER BY submitte
                 <li><a href="../admin/dashbord.php" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
                 <li><a href="../admin/volunteerjoined.php"><i class="fas fa-user-plus"></i> Volunteers</a></li>
                 <li><a href="../php/supportre.php"><i class="fas fa-hand-holding-heart"></i> People Need Support</a></li>
-                <li><a href="../html/annoucement.html"><i class="fa-solid fa-bullhorn"></i>Annoucement</a></li>
+                <li><a href="../php/contacte.php"><i class="fa-solid fa-bullhorn"></i>Show contacted people</a></li>
                 <li><a href="../admin/lougout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </nav>

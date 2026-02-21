@@ -3,15 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <title>Ability Support | Contact</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/contact.css">
+body {
+     font-family: "Poppins", sans-serif;
+    background-color: #f5fafc;   
+    color: #1e3b4a;            
+    line-height: 1.5;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ----- HEADER (matches other pages) ----- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: #ffffffdd;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 25px rgba(0, 40, 50, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #cde3e8;
+}
+
+.logo h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+    color: #0f4b5c;
+    text-shadow: 2px 2px 0 rgba(15, 113, 115, 0.1);
+}
+
+nav ul {
+    display: flex;
+    gap: 2.8rem;
+    list-style: none;
+}
+
+nav ul li a {
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.4rem 0;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+    color: #1e4d5e;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    border-bottom-color: #0f7173;
+    color: #0a3b44;
+}
+
+header button {
+    background: #0f7173;
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 40px;
+    box-shadow: 0 4px 12px rgba(15, 113, 115, 0.3);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: 0.2s;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+header button a {
+    color: white;
+    display: block;
+}
+
+header button:hover {
+    background: #0a5b5d;
+    box-shadow: 0 8px 18px rgba(15, 113, 115, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ----- MAIN CONTAINER (for centering) ----- */
+main {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* ----- CONTACT HERO ----- */
+.contact-hero {
+    text-align: center;
+    margin: 3rem 0 2rem 0;
+}
+
+.contact-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #0a3144;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.contact-hero p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0.5rem auto 0;
+    color: #346977;
+    font-weight: 300;
+}
+
+/* ----- CONTACT GRID SECTION (info + form) ----- */
+.contact-grid-section {
+    background: white;
+    border-radius: 40px;
+    padding: 2.5rem 2.5rem;
+    margin: 2rem 0 3rem;
+    box-shadow: 0 20px 40px -10px rgba(10, 60, 70, 0.15);
+    border: 1px solid #d0e7ed;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+}
+
+/* left info cards */
+.contact-info {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    background: #f0f8fc;
+    padding: 1.5rem 1.8rem;
+    border-radius: 28px;
+    border: 1px solid #cde3e8;
+    transition: 0.2s;
+}
+
+.info-card:hover {
+    background: #e5f2f7;
+    border-color: #9fcbd3;
+}
+
+.info-icon {
+    width: 36px;
+    height: 36px;
+    background: #0f7173;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"/><path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm-7.799 4c-.118-.649-.19-1.315-.196-2h-2c0 1.32.163 2.614.474 3.83l1.722-.57zM13 16.988c-1.684 0-3.154-.547-4.04-1.381l-1.261 1.581c1.222 1.105 3.104 1.78 5.301 1.8v-2z"/><path d="M21.447 20.105l-1.896-1.896c-.34-.339-.896-.339-1.237 0l-1.949 1.949c-2.473-1.053-4.531-2.68-5.951-4.762l4.074-4.074-3-3-5.021 5.021c.039.045.078.09.117.135 1.417 1.722 3.303 3.147 5.409 4.201l2.893-2.893 1.896 1.896-2.893 2.893c.828.39 1.716.704 2.648.932l.984-2.639 2.685 2.685c.214.215.512.314.826.314.332 0 .663-.126.914-.377.49-.488.49-1.28 0-1.768z"/></svg>') center/contain no-repeat;
+    background-color: #0f7173;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    flex-shrink: 0;
+}
+
+.info-text h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0e3b44;
+    margin-bottom: 0.25rem;
+}
+
+.info-text p a {
+    color: #0f7173;
+    font-weight: 500;
+    border-bottom: 1px dotted;
+}
+
+.info-text p a:hover {
+    color: #0a4f52;
+}
+
+/* right form */
+.contact-form-wrapper {
+    flex: 2 1 500px;
+    background: #f7fbfd;
+    border-radius: 36px;
+    padding: 2rem 2.2rem;
+    border: 1px solid #c2dae2;
+}
+
+.contact-form-wrapper h2 {
+    font-size: 2rem;
+    color: #0a3144;
+    margin-bottom: 0.25rem;
+}
+
+.form-subhead {
+    color: #3d6775;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+}
+
+.form-row input,
+.form-row select,
+.contact-form textarea {
+    flex: 1 1 200px;
+    background: white;
+    border: 1.5px solid #bdd6df;
+    border-radius: 30px;
+    padding: 0.9rem 1.4rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    color: #1a3f4b;
+    outline: none;
+    transition: 0.15s;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.contact-form textarea:focus {
+    border-color: #0f7173;
+    box-shadow: 0 0 0 4px rgba(15, 113, 115, 0.15);
+}
+
+.contact-form textarea {
+    border-radius: 28px;
+    resize: vertical;
+    width: 100%;
+}
+
+.contact-form .btn {
+    background: #0f7173;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 2px solid transparent;
+    align-self: flex-start;
+    min-width: 200px;
+}
+
+.contact-form .btn:hover {
+    background: #0a5b5d;
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(15, 113, 115, 0.3);
+}
+
+/* ----- VISIT SECTION ----- */
+.visit-section {
+    text-align: center;
+    margin: 4rem 0;
+}
+
+.visit-section h2 {
+    font-size: 2.5rem;
+    color: #0a3144;
+    margin-bottom: 0.5rem;
+}
+
+.visit-container {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 48px;
+    overflow: hidden;
+    margin-top: 2rem;
+    box-shadow: 0 20px 35px rgba(0, 50, 60, 0.1);
+    border: 1px solid #cbe2e9;
+}
+
+.visit-address {
+    flex: 1 1 300px;
+    background: #e0f0f5;
+    padding: 2.5rem 2rem;
+    text-align: left;
+    color: #0a3144;
+}
+
+.visit-address h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.visit-address p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.visit-address .btn-outline-light {
+    background: transparent;
+    border: 2px solid #0f7173;
+    color: #0f7173;
+    padding: 0.8rem 2rem;
+    border-radius: 40px;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: 0.2s;
+}
+
+.visit-address .btn-outline-light:hover {
+    background: #0f7173;
+    color: white;
+}
+
+.visit-map {
+    flex: 1 1 300px;
+    background: #bbd8e2;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #1a4f5e;
+    background-image: radial-gradient(circle at 20px 20px, #a1c6d4 2px, transparent 2px), 
+                      linear-gradient(#9ec0cc, #b1d2de);
+    background-size: 40px 40px, 100%;
+}
+
+/* ----- RESPONSE & ACCESSIBILITY (cards) ----- */
+.response-section {
+    background: #1a4755;   /* deep teal background */
+    border-radius: 60px 60px 30px 30px;
+    padding: 3.5rem 2.5rem;
+    margin: 4rem 0;
+    color: white;
+    box-shadow: inset 0 -5px 0 #0b2f39;
+}
+
+.response-section h2 {
+    color: white !important;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.response-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.response-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(6px);
+    border-radius: 36px;
+    padding: 2rem 1.8rem;
+    flex: 1 1 200px;
+    min-width: 200px;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: 0.2s;
+}
+
+.response-card:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-5px);
+}
+
+.response-card h4 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #fffbcc;
+}
+
+.response-card p {
+    color: #e1f2f7;
+    line-height: 1.4;
+}
+
+/* ----- CONNECT / SOCIAL SECTION ----- */
+.connect-section {
+    text-align: center;
+    background: #19505f;
+    border-radius: 40px;
+    padding: 3.5rem 2rem;
+    margin: 4rem 0;
+    color: white;
+}
+
+.connect-section h2 {
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 0.75rem;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2.5rem 0 1.5rem;
+}
+
+.social-link {
+    background: rgba(255,255,255,0.08);
+    padding: 0.8rem 2rem;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: 2px solid rgba(255,255,255,0.4);
+    transition: 0.2s;
+    color: white;
+}
+
+.social-link:hover {
+    background: white;
+    color: #0f4f5c;
+    border-color: white;
+    transform: scale(1.05);
+}
+
+/* ----- FOOTER (consistent) ----- */
+.footer {
+    background: #0f313c;
+    color: #e0f0f4;
+    padding: 3rem 5% 1rem;
+    margin-top: 4rem;
+    border-top: 6px solid #0a4d5c;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+.footer-container div {
+    flex: 1 1 220px;
+}
+
+.footer h3,
+.footer h4 {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.3px;
+}
+
+.footer p,
+.footer li {
+    font-weight: 300;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer li a {
+    opacity: 0.85;
+    transition: 0.2s;
+    border-bottom: 1px dotted transparent;
+}
+
+.footer li a:hover {
+    opacity: 1;
+    border-bottom-color: #9fd1dd;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 2rem 0 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid #2c5a68;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* ----- minor tweaks for responsiveness ----- */
+@media (max-width: 800px) {
+    header {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    nav ul {
+        gap: 1.5rem;
+    }
+    .contact-hero h1 {
+        font-size: 2.5rem;
+    }
+    .contact-grid-section {
+        padding: 1.5rem;
+    }
+    .form-row input,
+    .form-row select {
+        flex: 1 1 100%;
+    }
+    .contact-form .btn {
+        align-self: stretch;
+    }
+}
+
+@media (max-width: 500px) {
+    .logo h2 {
+        font-size: 1.4rem;
+    }
+    nav ul {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+ </style>
 </head>
 <body>
-
-<!-- ================= HEADER ================= -->
 <header>
     <div class="logo">
         <h2>Ability Support</h2>
@@ -19,10 +546,10 @@
 
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#impact">Impact</a></li>
-            <li><a href="volunteer.html">Volunteer</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../html/disa.html#impact">Impact</a></li>
+            <li><a href="../html/volunterr.html">Volunteer</a></li>
+            <li><a href="../html/contact.html" class="active">Contact</a></li>
         </ul>
     </nav>
 
@@ -55,24 +582,10 @@
                     <div class="info-icon"></div>
                     <div class="info-text">
                         <h3>Email</h3>
-                        <p><a href="mailto:geovanipacis@gmail.com">geovanipacis@gmail.com</a></p>
+                        <p><a href="mailto:tumukundehonolyne@gmail.com">tumukundehonolyne@gmail.com</a></p>
                         <p style="font-size: 0.9rem; color: #3f5e6b;">We reply within 24h</p>
                     </div>
                 </div>
-                <div class="info-card">
-                    <div class="info-icon"></div>
-                    <div class="info-text">
-                        <h3>Visit us</h3>
-                        <p>KG 541 St, Kigali<br>Rwanda</p>
-                    </div>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon"></div>
-                    <div class="info-text">
-                        <h3>Mobile Money</h3>
-                        <p><strong>+250 722 412117</strong></p>
-                        <p style="font-size: 0.9rem;">Donations & support</p>
-                    </div>
                 </div>
             </div>
 
@@ -80,27 +593,28 @@
             <div class="contact-form-wrapper">
                 <h2>Send us a message</h2>
                 <p class="form-subhead">We’d love to hear from you. Fill out the form and we’ll respond as soon as possible.</p>
-                <form class="contact-form">
-                    <div class="form-row">
-                        <input type="text" placeholder="Your name *" required>
-                        <input type="email" placeholder="Email address *" required>
-                    </div>
-                    <div class="form-row">
-                        <input type="tel" placeholder="Phone number (optional)">
-                        <select>
-                            <option value="" disabled selected>Topic</option>
-                            <option>General inquiry</option>
-                            <option>Request support</option>
-                            <option>Volunteer opportunity</option>
-                            <option>Donation / partnership</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <textarea placeholder="How can we help you? *" rows="5" required></textarea>
-                    
-                    <button type="submit" class="btn">Send message</button>
-                    <p style="font-size: 0.8rem; color: #4f6f7a; margin-top: 0.5rem;">Your information is kept private.</p>
-                </form>
+               <form class="contact-form" method="POST" action="../php/contact.php">
+    <div class="form-row">
+        <input type="text" name="fullname" placeholder="Your name *" required>
+        <input type="email" name="email" placeholder="Email address *" required>
+    </div>
+
+    <div class="form-row">
+        <input type="tel" name="phone" placeholder="Phone number (optional)">
+        <select name="topic" required>
+            <option value="" disabled selected>Topic</option>
+            <option value="General inquiry">General inquiry</option>
+            <option value="Request support">Request support</option>
+            <option value="Volunteer opportunity">Volunteer opportunity</option>
+            <option value="Donation / partnership">Donation / partnership</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <textarea name="message" placeholder="How can we help you? *" rows="5" required></textarea>
+
+    <button type="submit" name="submit" class="btn">Send message</button>
+</form>
             </div>
         </div>
     </section>
@@ -112,7 +626,7 @@
         <div class="visit-container">
             <div class="visit-address">
                 <h3>Ability Support</h3>
-                <p> KG 541 Street, Nyarugenge</p>
+                <p> 12 NR 45 karuruma</p>
                 <p> 3rd floor, Unity House</p>
                 <p> Monday – Friday: 8:00 – 18:00</p>
                 <p> Saturday: 9:00 – 13:00</p>
@@ -177,15 +691,15 @@
         <div>
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#impact">Impact</a></li>
-                <li><a href="volunteer.html">Volunteer</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../html/disa.html#impact">Impact</a></li>
+                <li><a href="../html/volunterr.html">Volunteer</a></li>
+                <li><a href="../html/contact.html">Contact</a></li>
             </ul>
         </div>
         <div>
             <h4>Contact Info</h4>
-            <p>Email: geovanipacis@gmail.com</p>
+            <p>Email: tumukundehonolyne@gmail.com</p>
             <p>Phone: +250 722 412117</p>
             <p>Kigali, Rwanda</p>
         </div>

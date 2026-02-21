@@ -3,7 +3,7 @@ session_start();
 include("config.php");
 
 if(!isset($_SESSION['admin'])){
-    header("Location: adminlogin.php");
+    header("Location: ../admin/adminlogin.php");
     exit();
 }
 
