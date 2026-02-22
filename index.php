@@ -319,7 +319,7 @@
             <div class="project-cards">
                 <div class="card"><h3>Support People with Disabilities</h3><p>Empowering individuals with disabilities.</p><a href="./html/disa.html" class="link">Learn more →</a></div>
                 <div class="card"><h3>Orphan children</h3><p>Care, education, and support for orphans.</p><a href="./html/child.html" class="link">Learn more →</a></div>
-                <div class="card"><h3>Low-Income Communities</h3><p>Healthcare and awareness.</p><a href="" class="link">Learn more →</a></div>
+                <div class="card"><h3>Low-Income Communities</h3><p>Healthcare and awareness.</p><a href="./html/lowincome.html" class="link">Learn more →</a></div>
             </div>
         </div>
     </section>
