@@ -1,3 +1,18 @@
+<?php
+include('./php/db2.php');
+
+// Fetch announcements from database
+$announcements_query = "SELECT * FROM announcements ORDER BY 
+    CASE priority 
+        WHEN 'high' THEN 1 
+        WHEN 'medium' THEN 2 
+        WHEN 'low' THEN 3 
+    END, 
+    created_at DESC 
+    LIMIT 5";
+$announcements_result = $conn->query($announcements_query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +40,8 @@
 
         /* DARK MODE STYLES */
         body.dark-mode {
-            background-color: #121e26;
-            color: #e2edf5;
+            background-color: #274c65;
+            color: #f0ebeb;
         }
         body.dark-mode header,
         body.dark-mode .card,
@@ -35,12 +50,13 @@
         body.dark-mode .donate,
         body.dark-mode .footer,
         body.dark-mode .testimonial-section,
-        body.dark-mode .blog-section {
-            background-color: #1c2a33;
-            color: #d1e2ed;
+        body.dark-mode .blog-section,
+        body.dark-mode .announcement-section {
+            background-color: #295570;
+            color: #ffffff;
         }
         body.dark-mode .hero-content {
-            background: rgba(20, 40, 50, 0.8);
+            background: rgba(41, 93, 120, 0.8);
             border-color: #2f5568;
         }
         body.dark-mode .btn-primary {
@@ -49,11 +65,29 @@
         body.dark-mode .call {
             background: #1f4355;
             border-color: #3584a3;
-            color: #d2ecff;
+            color: #ffffff;
         }
+        body.dark-mode .announcement-card {
+            background: #1f3a45;
+            border-left-color: #4797b9;
+        }
+        body.dark-mode .announcement-card.high {
+            border-left-color: #f44336;
+        }
+        body.dark-mode .announcement-card.medium {
+            border-left-color: #ff9800;
+        }
+        body.dark-mode .announcement-card.low {
+            border-left-color: #4caf50;
+        }
+        body.dark-mode .priority-badge {
+            background: #0a7bb8;
+            color: #ffffff;
+        }
+        
         .dark-toggle {
             cursor: pointer;
-            background: #eee;
+            background: #769cd9;
             border-radius: 40px;
             padding: 0.4rem 1rem;
             font-weight: 600;
@@ -169,6 +203,141 @@
         .stat-box h3 { font-size: 2.8rem; color: #09455c; }
         .stat-box p { font-size: 1.2rem; color: #266481; }
 
+        /* ANNOUNCEMENT SECTION - NEW */
+        .announcement-section {
+            background: linear-gradient(135deg, #f0f7fc 0%, #e8f2f8 100%);
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            border-radius: 30px;
+        }
+        .announcement-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .announcement-header h2 {
+            font-size: 2rem;
+            color: #09455c;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .announcement-header h2 i {
+            color: #f39c12;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .announcement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .announcement-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border-left: 5px solid #1f7a8c;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .announcement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .announcement-card:hover::before {
+            left: 100%;
+        }
+        .announcement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .announcement-card.high {
+            border-left-color: #f44336;
+        }
+        .announcement-card.medium {
+            border-left-color: #ff9800;
+        }
+        .announcement-card.low {
+            border-left-color: #4caf50;
+        }
+        .announcement-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #09455c;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 10px;
+        }
+        .priority-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            background: #eef2f6;
+            color: #4a5568;
+            white-space: nowrap;
+        }
+        .priority-badge.high {
+            background: #f44336;
+            color: white;
+        }
+        .priority-badge.medium {
+            background: #ff9800;
+            color: white;
+        }
+        .priority-badge.low {
+            background: #4caf50;
+            color: white;
+        }
+        .announcement-content {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .announcement-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #718096;
+            border-top: 1px solid #eef2f6;
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+        .announcement-meta i {
+            margin-right: 5px;
+            color: #1f7a8c;
+        }
+        .no-announcements {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            color: #718096;
+        }
+        .no-announcements i {
+            font-size: 3rem;
+            color: #cbd5e0;
+            margin-bottom: 1rem;
+        }
+
         /* ABOUT */
         .about { background: white; padding: 3rem 0; text-align: center; }
         .about h2 { font-size: 2.5rem; color: #103d52; }
@@ -273,7 +442,32 @@
         @media (max-width: 800px) {
             .header-container { flex-direction: column; }
             .impact-stats { flex-direction: column; gap: 1.5rem; }
+            .announcement-grid { grid-template-columns: 1fr; }
         }
+        /* Login button style */
+a.log {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #1E3A8A; /* Primary color */
+    color: #F5F5F5; /* Light text for contrast */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+a.log:hover {
+    background-color: #22C55E; /* Accent green on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
+
+a.log:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
     </style>
 </head>
 <body>
@@ -289,6 +483,7 @@
                 </ul>
             </nav>
             <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="./html/login.php" class="log">Login</a>
                 <a href="tel:+250735287464" class="call"><i class="fa-solid fa-phone"></i> Call Us</a>
                 <button class="dark-mode-toggle" id="darkModeToggle"><i class="fa-solid fa-moon"></i> Dark</button>
             </div>
@@ -303,11 +498,47 @@
             <a href="#donate" class="btn-primary">Donate Now</a>
         </div>
     </section>
+    
     <div class="impact-stats">
         <div class="stat-box"><i class="fa-solid fa-heart"></i><h3 class="counter" data-target="1500">0</h3><p>Lives Changed</p></div>
         <div class="stat-box"><i class="fa-solid fa-child"></i><h3 class="counter" data-target="450">0</h3><p>Orphans Supported</p></div>
         <div class="stat-box"><i class="fa-solid fa-hand-holding-heart"></i><h3 class="counter" data-target="75">0</h3><p>Active Projects</p></div>
     </div>
+
+    <!-- ANNOUNCEMENTS SECTION - DISPLAYED FROM ADMIN -->
+    <section id="announcements" class="announcement-section">
+        <div class="announcement-header">
+            <h2><i class="fas fa-bullhorn"></i> Latest Announcements</h2>
+            <p>Stay updated with our latest news and events</p>
+        </div>
+        <div class="announcement-grid">
+            <?php if($announcements_result && $announcements_result->num_rows > 0): ?>
+                <?php while($announcement = $announcements_result->fetch_assoc()): ?>
+                <div class="announcement-card <?php echo $announcement['priority']; ?>">
+                    <div class="announcement-title">
+                        <span><?php echo htmlspecialchars($announcement['title']); ?></span>
+                        <span class="priority-badge <?php echo $announcement['priority']; ?>">
+                            <?php echo ucfirst($announcement['priority']); ?> Priority
+                        </span>
+                    </div>
+                    <div class="announcement-content">
+                        <?php echo nl2br(htmlspecialchars($announcement['content'])); ?>
+                    </div>
+                    <div class="announcement-meta">
+                        <span><i class="fas fa-user"></i> By: <?php echo htmlspecialchars($announcement['created_by']); ?></span>
+                        <span><i class="fas fa-calendar"></i> <?php echo date('F d, Y', strtotime($announcement['created_at'])); ?></span>
+                    </div>
+                </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <div class="no-announcements" style="grid-column: 1/-1;">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>No Announcements Yet</h3>
+                    <p>Check back soon for updates from our team!</p>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
 
     <!-- About -->
     <section id="about" class="about"><div class="container"><h2>About Us</h2><p>Helping Hands improves lives through education, health, and community programs, creating lasting change.</p></div></section>
@@ -348,10 +579,12 @@
         <button class="slider-btn" id="prevSlide"><i class="fa-solid fa-arrow-left"></i> Prev</button>
         <button class="slider-btn" id="nextSlide">Next <i class="fa-solid fa-arrow-right"></i></button>
     </section>
+    
     <section class="container" style="padding:2rem;">
         <h2 style="text-align:center;">Where we work</h2>
         <div id="map"></div>
     </section>
+    
     <section class="blog-section">
         <h2>Latest Stories</h2>
         <div style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;">
@@ -359,6 +592,7 @@
             <div class="blog-card"><h3>Medical campaign success</h3><p>Over 500 vaccinated in rural areas.</p><a href="#">Read more</a></div>
         </div>
     </section>
+    
     <div id="emergencyBanner" style="background:#cc3300; color:white; text-align:center; padding:1rem; display:none;">
         ⚠️ URGENT: Flood relief appeal – your donation saves lives! <a href="#donate" style="color:yellow;">Donate now</a>
     </div>
@@ -379,7 +613,7 @@
     <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'});"><i class="fa-solid fa-arrow-up"></i></div>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
     <script>
         // Dark mode toggle
         const toggle = document.getElementById('darkModeToggle');
@@ -419,30 +653,12 @@
             slides[currentSlide].classList.add('active');
         });
 
-        
-        const map = L.map('map').setView([-1.9441, 30.0619], 8);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
-        L.marker([-1.9441, 30.0619]).addTo(map).bindPopup('Head office Kigali').openPopup();
-        L.marker([-1.5, 29.6333]).addTo(map).bindPopup('Musanze project');
-        L.marker([-2.4833, 28.8833]).addTo(map).bindPopup('Rusizi health center');
+       
 
         window.addEventListener('scroll', ()=>{
             const btn = document.getElementById('scrollTop');
             if(window.scrollY > 400) btn.classList.add('show'); else btn.classList.remove('show');
         });
-
-      
-        document.getElementById('volunteerForm').addEventListener('submit', (e)=>{ e.preventDefault(); alert('Thank you for volunteering! We will contact you.'); });
     </script>
-    <style>
-        img { transition: 0.2s; }
-        img:hover { opacity: 0.8; }
-    </style>
-    
-    <div style="text-align:center; padding:1rem;">
-        <button onclick="alert('Share link copied!')"><i class="fa-brands fa-facebook"></i> Share</button>
-        <button onclick="alert('Tweeted (demo)')"><i class="fa-brands fa-twitter"></i> Tweet</button>
-    </div>
-
 </body>
 </html>

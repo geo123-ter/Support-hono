@@ -2,76 +2,631 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Events · Promoting Unity</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <style> /* same base styles as above, plus event-specific */ </style>
-    <link rel="stylesheet" href="../css/callendal.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Events · Unity in Action | Promoting Unity</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: modern, clean, readable -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== REALISTIC HEADER / NAVIGATION ========== */
+        .real-header {
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(0px);
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.9rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .logo-icon {
+            background: #0b3b3f;
+            color: white;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #0b3b3f 0%, #1e6b5e 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2d3e50;
+            transition: color 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active-nav {
+            color: #0f6b5e;
+        }
+
+        .donate-pill {
+            background: #0b3b3f;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .donate-pill:hover {
+            background: #1e6b5e;
+            transform: translateY(-1px);
+        }
+
+        /* ========== HERO SECTION (real event hero) ========== */
+        .gallery-hero {
+            background: linear-gradient(105deg, #0b3b3f 0%, #145c54 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .gallery-hero h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .gallery-hero h2 i {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .gallery-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========== MAIN CONTAINER ========== */
+        .events-main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        /* filter bar — realistic design */
+        .event-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 0.6rem 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 60px;
+            color: #2c3e4e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.02);
+        }
+
+        .filter-btn:hover {
+            border-color: #cbd5e1;
+            background: #f9f9ff;
+            transform: translateY(-1px);
+        }
+
+        .filter-btn.active {
+            background: #0b3b3f;
+            border-color: #0b3b3f;
+            color: white;
+            box-shadow: 0 4px 10px rgba(11,59,63,0.2);
+        }
+
+        /* events grid — modern card style */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            transition: all 0.25s ease;
+            border: 1px solid #edf2f7;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .event-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.12);
+            border-color: #dce5ef;
+        }
+
+        /* card date badge */
+        .event-date {
+            background: #fef9e6;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            padding: 0.7rem 0;
+            border-radius: 24px;
+            margin: 1.5rem 0 0 1.5rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            border: 1px solid #ffedd5;
+        }
+
+        .event-date .day {
+            font-size: 1.9rem;
+            font-weight: 800;
+            line-height: 1;
+            color: #0b3b3f;
+        }
+
+        .event-date .month {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #706b4a;
+        }
+
+        .event-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0.9rem 1.5rem 0.5rem 1.5rem;
+            color: #0f2c30;
+        }
+
+        .event-card p {
+            margin: 0.3rem 1.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #475569;
+        }
+
+        .event-card p i {
+            width: 1.25rem;
+            color: #54847c;
+            font-size: 0.9rem;
+        }
+
+        .event-card p:last-of-type {
+            margin-bottom: 0.5rem;
+        }
+
+        .event-btn {
+            display: inline-block;
+            background: #f1f5f9;
+            margin: 1rem 1.5rem 1.8rem 1.5rem;
+            padding: 0.7rem 1rem;
+            text-align: center;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1f6e62;
+            transition: all 0.2s;
+            border: 1px solid #e2edf2;
+            letter-spacing: -0.2px;
+        }
+
+        .event-btn:hover {
+            background: #0b3b3f;
+            color: white;
+            border-color: #0b3b3f;
+        }
+
+        /* contact section (real callout) */
+        .volunteer-cta {
+            background: #f0f6f4;
+            border-radius: 48px;
+            padding: 2rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            border: 1px solid #dde9e5;
+        }
+
+        .volunteer-cta p {
+            font-size: 1.05rem;
+            color: #1f3e42;
+        }
+
+        .volunteer-cta strong {
+            color: #0f5e54;
+            font-weight: 700;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .contact-link {
+            background: white;
+            padding: 0.5rem 1.3rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #1c5e55;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border: 1px solid #cde3de;
+            transition: 0.2s;
+        }
+
+        .contact-link i {
+            font-size: 1rem;
+        }
+
+        .contact-link:hover {
+            background: #0b3b3f;
+            color: white;
+            border-color: #0b3b3f;
+        }
+
+        /* footer real style */
+        .real-footer {
+            background: #0f2629;
+            color: #cbdcd9;
+            margin-top: 3rem;
+            padding: 2.5rem 2rem 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-col p {
+            margin-top: 0.5rem;
+            max-width: 260px;
+        }
+
+        .footer-col a {
+            color: #bcd9d4;
+            text-decoration: none;
+            border-bottom: 1px dotted #48746b;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-copy {
+            text-align: center;
+            border-top: 1px solid #2f4e4a;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            font-size: 0.75rem;
+        }
+
+        /* responsive behavior */
+        @media (max-width: 700px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .gallery-hero h2 {
+                font-size: 1.9rem;
+            }
+            .events-main {
+                padding: 2rem 1.2rem;
+            }
+            .event-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* subtle real-world touches */
+        .tagline {
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
+        }
+        .event-card p i.fa-location-dot, .event-card p i.fa-clock {
+            filter: none;
+        }
+    </style>
 </head>
 <body>
-    <header>...</header>
 
-    <section class="gallery-hero" style="background: #0b3b3f;">
-        <h2><i class="fa-regular fa-calendar"></i> Upcoming Events</h2>
-        <p>Join us and make a difference</p>
-    </section>
+<!-- ========== REALISTIC HEADER ========== -->
+<header class="real-header">
+    <div class="nav-container">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fas fa-hands-helping"></i></div>
+            <span class="logo-text">Promoting Unity</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Our Work</a>
+            <a href="#" class="active-nav">Events</a>
+            <a href="#">Get Involved</a>
+            <a href="#" class="donate-pill"><i class="fas fa-heart"></i> Donate</a>
+        </div>
+    </div>
+</header>
 
-    <div class="container" style="padding: 3rem 0;">
-        <div class="event-filters" style="margin-bottom:2rem; text-align:center;">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="volunteer">Volunteer</button>
-            <button class="filter-btn" data-filter="fundraiser">Fundraiser</button>
-            <button class="filter-btn" data-filter="workshop">Workshop</button>
+<!-- HERO SECTION -->
+<section class="gallery-hero">
+    <h2><i class="fa-regular fa-calendar-circle-plus"></i> Upcoming Events</h2>
+    <p>Join us and make a difference — connect, serve, and grow together in Rwanda.</p>
+</section>
+
+<!-- MAIN EVENT SECTION -->
+<div class="events-main">
+    <!-- filter buttons (real interaction) -->
+    <div class="event-filters">
+        <button class="filter-btn active" data-filter="all">All events</button>
+        <button class="filter-btn" data-filter="volunteer"><i class="fas fa-leaf"></i> Volunteer</button>
+        <button class="filter-btn" data-filter="fundraiser"><i class="fas fa-hand-holding-heart"></i> Fundraiser</button>
+        <button class="filter-btn" data-filter="workshop"><i class="fas fa-chalkboard-user"></i> Workshop</button>
+    </div>
+
+    <!-- events grid (dynamic but also fully visible) -->
+    <div class="events-grid" id="eventsGrid">
+        <!-- Event 1 - Volunteer -->
+        <div class="event-card" data-category="volunteer">
+            <div class="event-date"><span class="day">15</span><span class="month">MAY</span></div>
+            <h3>Community Clean-Up</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Kigali, Nyamirambo</p>
+            <p><i class="fa-regular fa-clock"></i> 9:00 AM – 12:00 PM</p>
+            <p>Help us keep our neighborhoods clean and green. Gloves & tools provided.</p>
+            <a href="tel:+250722360862" class="event-btn"><i class="fas fa-phone-alt"></i> Call to Join</a>
         </div>
-        <div class="events-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem;">
-            <!-- Event cards -->
-            <div class="event-card" data-category="volunteer">
-                <div class="event-date"><span class="day">15</span><span class="month">MAY</span></div>
-                <h3>Community Clean-Up</h3>
-                <p><i class="fa-solid fa-location-dot"></i> Kigali, Nyamirambo</p>
-                <p><i class="fa-regular fa-clock"></i> 9:00 AM - 12:00 PM</p>
-                <p>Help us keep our neighborhoods clean and green.</p>
-                <a href="tel:+250722360862" class="event-btn">Call to Join</a>
-            </div>
-            <div class="event-card" data-category="fundraiser">
-                <div class="event-date"><span class="day">22</span><span class="month">MAY</span></div>
-                <h3>Charity Run 5K</h3>
-                <p><i class="fa-solid fa-location-dot"></i> Kimihurura</p>
-                <p><i class="fa-regular fa-clock"></i> 7:00 AM start</p>
-                <p>Run for a cause – support orphan education.</p>
-                <a href="mailto:reponserashford@gmail.com" class="event-btn">Email to Register</a>
-            </div>
-            <div class="event-card" data-category="workshop">
-                <div class="event-date"><span class="day">05</span><span class="month">JUN</span></div>
-                <h3>First Aid Training</h3>
-                <p><i class="fa-solid fa-location-dot"></i> Our Office, Kigali</p>
-                <p><i class="fa-regular fa-clock"></i> 10:00 AM - 2:00 PM</p>
-                <p>Free basic first aid course for volunteers.</p>
-                <a href="tel:+250722360862" class="event-btn">Call to Reserve</a>
-            </div>
+
+        <!-- Event 2 - Fundraiser -->
+        <div class="event-card" data-category="fundraiser">
+            <div class="event-date"><span class="day">22</span><span class="month">MAY</span></div>
+            <h3>Charity Run 5K</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Kimihurura Start Point</p>
+            <p><i class="fa-regular fa-clock"></i> 7:00 AM sharp</p>
+            <p>Run for a cause – support orphan education & school supplies.</p>
+            <a href="mailto:reponserashford@gmail.com" class="event-btn"><i class="fas fa-envelope"></i> Email to Register</a>
         </div>
-        <div style="text-align:center; margin-top:3rem;">
-            <p>Want to volunteer? Contact <strong>Rashford</strong> at <a href="tel:+250722360862">0722 360 862</a> or <a href="mailto:reponserashford@gmail.com">reponserashford@gmail.com</a></p>
+
+        <!-- Event 3 - Workshop -->
+        <div class="event-card" data-category="workshop">
+            <div class="event-date"><span class="day">05</span><span class="month">JUN</span></div>
+            <h3>First Aid Training</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Unity Hub, Kigali</p>
+            <p><i class="fa-regular fa-clock"></i> 10:00 AM – 2:00 PM</p>
+            <p>Free basic first aid & CPR course for volunteers. Certification included.</p>
+            <a href="tel:+250722360862" class="event-btn"><i class="fas fa-calendar-check"></i> Call to Reserve</a>
+        </div>
+
+        <!-- EXTRA EVENT 4: Volunteer + special (adds realism) -->
+        <div class="event-card" data-category="volunteer">
+            <div class="event-date"><span class="day">29</span><span class="month">MAY</span></div>
+            <h3>Youth Mentorship Day</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Gisozi Youth Center</p>
+            <p><i class="fa-regular fa-clock"></i> 2:00 PM – 5:00 PM</p>
+            <p>Inspire young leaders: share skills, play games, and guide future changemakers.</p>
+            <a href="tel:+250722360862" class="event-btn"><i class="fas fa-users"></i> Volunteer Today</a>
+        </div>
+
+        <!-- EVENT 5: Fundraiser Gala -->
+        <div class="event-card" data-category="fundraiser">
+            <div class="event-date"><span class="day">12</span><span class="month">JUN</span></div>
+            <h3>Unity Gala Dinner</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Kigali Conference Centre</p>
+            <p><i class="fa-regular fa-clock"></i> 6:30 PM – 10:00 PM</p>
+            <p>An evening of solidarity, music & auction. All proceeds support community kitchens.</p>
+            <a href="mailto:reponserashford@gmail.com" class="event-btn"><i class="fas fa-ticket-alt"></i> Get Tickets</a>
+        </div>
+
+        <!-- EVENT 6: Workshop: Digital Literacy -->
+        <div class="event-card" data-category="workshop">
+            <div class="event-date"><span class="day">19</span><span class="month">JUN</span></div>
+            <h3>Digital Skills Bootcamp</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Online + In-person (Kicukiro)</p>
+            <p><i class="fa-regular fa-clock"></i> 9:00 AM – 1:00 PM</p>
+            <p>Learn social media management, online safety, and freelancing basics.</p>
+            <a href="tel:+250722360862" class="event-btn"><i class="fas fa-laptop-code"></i> Reserve Seat</a>
         </div>
     </div>
 
-    <footer>...</footer>
+    <!-- Contact / volunteer CTA (realistic) -->
+    <div class="volunteer-cta">
+        <p><i class="fas fa-hands-clapping"></i> Want to volunteer or need more info? Reach out to our community coordinator <strong>Rashford</strong> directly.</p>
+        <div class="contact-links">
+            <a href="tel:+250722360862" class="contact-link"><i class="fas fa-phone"></i> +250 722 360 862</a>
+            <a href="mailto:reponserashford@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> reponserashford@gmail.com</a>
+            <a href="#" class="contact-link"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+        </div>
+        <p class="tagline" style="margin-top: 1rem; font-size: 0.8rem;">We reply within 24 hours — let's build unity together.</p>
+    </div>
+</div>
 
-    <script>
-        // Simple filter
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+<!-- REAL FOOTER -->
+<footer class="real-footer">
+    <div class="footer-inner">
+        <div class="footer-col">
+            <h4 style="color:#eef2f2; font-weight: 600;">Promoting Unity</h4>
+            <p>Empowering communities through connection, education, and action. Based in Kigali, Rwanda.</p>
+        </div>
+        <div class="footer-col">
+            <h4 style="color:#eef2f2;">Contact</h4>
+            <p><i class="fas fa-map-marker-alt"></i> KG 541 St, Kigali<br>
+            <i class="fas fa-phone"></i> <a href="tel:+250722360862">+250 722 360 862</a><br>
+            <i class="fas fa-envelope"></i> <a href="mailto:reponserashford@gmail.com">reponserashford@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+            <h4 style="color:#eef2f2;">Follow</h4>
+            <p><i class="fab fa-instagram"></i> @promotingunity_rw<br>
+            <i class="fab fa-twitter"></i> @UnityRwanda<br>
+            <i class="fab fa-linkedin"></i> Promoting Unity Org</p>
+        </div>
+    </div>
+    <div class="footer-copy">
+        &copy; 2026 Promoting Unity — Together we rise. All events are free or donation-based.
+    </div>
+</footer>
+
+<!-- FILTER SCRIPT (Enhanced + smooth) -->
+<script>
+    (function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+        
+        // Helper: show/hide based on filter value with graceful grid adaptation
+        function filterEvents(filterValue) {
+            let visibleCount = 0;
+            eventCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filterValue === 'all' || category === filterValue) {
+                    card.style.display = 'flex';   // restore flex (original display from CSS)
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            // Optional: subtle console feedback (not needed but adds realism)
+            if (visibleCount === 0 && filterValue !== 'all') {
+                // In case no events match, we could show a message, but not necessary as we have at least one per category
+                const grid = document.querySelector('.events-grid');
+                let noResultMsg = document.getElementById('noEventMsg');
+                if (!noResultMsg) {
+                    noResultMsg = document.createElement('div');
+                    noResultMsg.id = 'noEventMsg';
+                    noResultMsg.style.textAlign = 'center';
+                    noResultMsg.style.gridColumn = '1/-1';
+                    noResultMsg.style.padding = '2rem';
+                    noResultMsg.style.background = '#f1f5f9';
+                    noResultMsg.style.borderRadius = '32px';
+                    noResultMsg.innerHTML = '<i class="fa-regular fa-calendar-xmark"></i> No events in this category at the moment. Check back soon!';
+                    grid.appendChild(noResultMsg);
+                }
+                if (visibleCount === 0) noResultMsg.style.display = 'block';
+                else if (noResultMsg) noResultMsg.style.display = 'none';
+            } else {
+                const existingMsg = document.getElementById('noEventMsg');
+                if (existingMsg) existingMsg.style.display = 'none';
+            }
+        }
+        
+        // initial load: make sure all cards are visible (flex)
+        filterEvents('all');
+        
+        // attach click handlers
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // update active class on buttons
+                filterButtons.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                const filter = this.dataset.filter;
-                document.querySelectorAll('.event-card').forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                const filterVal = this.getAttribute('data-filter');
+                filterEvents(filterVal);
             });
         });
-    </script>
+        
+        // additional polish: ensure that any hidden elements don't break grid layout
+        // style guarantee: each event-card remains flex when visible
+        eventCards.forEach(card => {
+            if (card.style.display !== 'none') card.style.display = 'flex';
+        });
+    })();
+</script>
+<!-- Additional small style to enforce consistency -->
+<style>
+    .event-card {
+        display: flex;
+    }
+    .events-grid:has(.event-card[style*="display: none"]) {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+    .filter-btn i {
+        margin-right: 6px;
+        font-size: 0.8rem;
+    }
+    .event-btn i {
+        margin-right: 6px;
+    }
+    .contact-link i {
+        font-size: 0.9rem;
+    }
+</style>
 </body>
 </html>
